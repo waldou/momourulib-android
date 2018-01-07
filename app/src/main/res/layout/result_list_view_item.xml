@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/holder"
+    android:layout_width="match_parent"
+   	android:layout_height="match_parent">
+
+	<android.support.v7.widget.CardView
+		android:id="@+id/result_card_view"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:foreground="?android:attr/selectableItemBackground"
+		android:clickable="true"
+		android:layout_marginTop="@dimen/content_padding"
+		android:layout_marginBottom="@dimen/content_padding">
+
+		<RelativeLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_margin="@dimen/content_padding">
+
+			<TextView
+				android:id="@+id/item_name"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_alignParentTop="true"
+				android:layout_alignParentLeft="true"
+				android:textSize="@dimen/results_item_name"
+				android:textColor="@color/myBlue"
+				android:text="Book title"
+				android:paddingTop="@dimen/results_item_section_padding"
+				android:paddingBottom="@dimen/results_item_section_padding"/>
+
+			<TextView
+				android:id="@+id/item_code_label"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_below="@id/item_name"
+				android:textSize="@dimen/results_item_description"
+				android:textColor="@color/myBlack"
+				android:text="@string/code_label"
+				android:paddingTop="@dimen/results_item_section_padding"
+				android:paddingRight="@dimen/results_item_section_padding"
+				android:paddingBottom="@dimen/results_item_section_padding"/>
+
+			<TextView
+				android:id="@+id/item_code"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_below="@id/item_name"
+				android:layout_toRightOf="@id/item_code_label"
+				android:textSize="@dimen/results_item_description"
+				android:textColor="@color/myBlack"
+				android:text="ABCD-EFGHI.JKL"
+				android:paddingTop="@dimen/results_item_section_padding"
+				android:paddingBottom="@dimen/results_item_section_padding"/>
+
+			<ImageView
+				android:id="@+id/item_favorite_icon"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_alignParentBottom="true"
+				android:layout_alignParentRight="true"
+				android:src="@drawable/ic_star_border_black_24dp"/>
+
+		</RelativeLayout>
+
+	</android.support.v7.widget.CardView>
+
+</LinearLayout>

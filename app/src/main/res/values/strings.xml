@@ -1,0 +1,72 @@
+<resources>
+    <string name="app_name">MomoURU Biblioteca</string>
+
+    <!-- Drawer -->
+    <string name="drawer_open">Menu</string>
+    <string name="drawer_closed">@string/app_name</string>
+    <string-array name="nav_options">
+        <item>Buscar</item>
+        <item>Favoritos</item>
+    </string-array>
+
+    <!-- Toolbar -->
+    <string name="menu_search">Buscar</string>
+
+    <!-- Error messages -->
+    <string name="error_network_unavailable">Sin conexión a internet</string>
+    <string name="error_no_results">No se encontraron resultados</string>
+    <string name="error_timeout">Servidor ocupado o fuera de línea</string>
+    <string name="error_io">Error E/S</string>
+    <string name="error_general">Error inesperado</string>
+    <string name="error_missing_expresion">Debes ingresar el texto a buscar</string>
+    <string name="error_no_favorites">No hay favoritos</string>
+
+    <!-- Search screen -->
+    <string name="expresion_label">Texto a buscar</string>
+    <string name="expresion_hint">Ingresa texto a buscar</string>
+    <string name="campos_label">Campo de búsqueda</string>
+    <string-array name="campos_array">
+        <item>Todos</item>
+        <item>Autor personal</item>
+        <item>Autor institucional</item>
+        <item>Nombre de Reunión</item>
+        <item>Título</item>
+        <item>Título de serie</item>
+        <item>Materias (Temas)</item>
+        <item>Editor/editorial</item>
+        <item>tabla de contenido</item>
+        <item>Fecha</item>
+        <item>Caterogía Geográfica</item>
+        <item>Tipo de tesis/trabajo</item>
+        <item>Tipo de material</item>
+        <item>Grado académico</item>
+        <item>Facultad</item>
+        <item>Excuela</item>
+        <item>Tutor</item>
+        <item>Lugar de publicación</item>
+        <item>Profesor</item>
+        <item>Cátedra</item>
+    </string-array>
+    <string name="expres_label">Tipos de documentos</string>
+    <string-array name="expres_array">
+        <item>Libro</item>
+        <item>Libro Digital</item>
+        <item>Publicaciones seriadas</item>
+        <item>Tesis</item>
+    </string-array>
+    <string name="search">Buscar</string>
+
+    <!-- Search Task -->
+    <string name="default_task_progress_title">Buscando</string>
+    <string name="default_task_progress_message">Contactando al servidor. Aguarda unos segundos.</string>
+    <string name="results_found">Se han encontrado resultados</string>
+
+    <!-- Results screen -->
+    <string name="results_title">Resultados</string>
+    <string name="code_label">Código:</string>
+
+    <!-- Details screen -->
+    <string name="details_title">Detalles</string>
+    <string name="keywords_label">Palabras clave:</string>
+
+</resources>

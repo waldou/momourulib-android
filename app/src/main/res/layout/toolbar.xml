@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.Toolbar
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="?attr/actionBarSize"
+    android:background="@color/myBlue"
+    android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+    app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+
+    <LinearLayout
+        android:layout_width="@dimen/top_bar_connection"
+        android:layout_height="@dimen/top_bar_connection"
+        android:orientation="horizontal"
+        android:layout_gravity="right"
+        android:layout_marginRight="15dp">
+
+        <ImageView android:id="@+id/net_imageview"
+            android:layout_width="@dimen/top_bar_connection"
+            android:layout_height="@dimen/top_bar_connection"
+            android:src="@drawable/connection"
+            android:antialias="true"
+            android:visibility="invisible" />
+
+    </LinearLayout>
+
+</android.support.v7.widget.Toolbar>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="myTableShadow">#F0F0F0</color>
+    <color name="myHighlight">#DBDBDB</color>
+    <color name="myBlue">#0069D1</color>
+    <color name="myBlue2">#004BA1</color>
+    <color name="myWhite">#F9F9F9</color>
+    <color name="myWhite2">@color/myTableShadow</color>
+    <color name="myBlack">#222222</color>
+    <color name="myGrey">#AAAAAA</color>
+    <color name="myYellow">#FFCC01</color>
+    <color name="button_text_color">@color/myWhite</color>
+</resources>

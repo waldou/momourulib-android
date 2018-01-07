@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="content_padding">10dp</dimen>
+    <dimen name="round_radius">5dp</dimen>
+
+    <dimen name="top_bar_connection">24dp</dimen>
+
+    <dimen name="drawer_width">260dp</dimen>
+    <dimen name="drawer_item_padding_top">15dp</dimen>
+    <dimen name="drawer_item_padding_bottom">15dp</dimen>
+    <dimen name="drawer_item_padding_left">10dp</dimen>
+    <dimen name="drawer_item_padding_right">20dp</dimen>
+
+    <dimen name="search_boxes_height">40dp</dimen>
+    <dimen name="search_fields_label_top_margin">10dp</dimen>
+    <dimen name="search_fields_top_margin">5dp</dimen>
+    <dimen name="search_field_expresion_padding">5dp</dimen>
+
+    <dimen name="results_item_section_padding">5dp</dimen>
+    <dimen name="results_item_name">18sp</dimen>
+    <dimen name="results_item_description">15sp</dimen>
+
+</resources>

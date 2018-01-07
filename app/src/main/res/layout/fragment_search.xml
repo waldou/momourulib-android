@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:fillViewport="true">
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/content_padding">
+
+        <TextView
+            android:id="@+id/expresion_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:textColor="@color/myBlack"
+            android:text="@string/expresion_label"/>
+
+        <EditText
+            android:id="@+id/expresion_edittext"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/search_boxes_height"
+            android:layout_marginTop="@dimen/search_fields_top_margin"
+            android:layout_below="@id/expresion_label"
+            android:padding="@dimen/search_field_expresion_padding"
+            android:textColor="@color/myBlack"
+            android:textColorHint="@color/myGrey"
+            android:hint="@string/expresion_hint"
+            android:maxLines="1"
+            android:inputType="text"
+            android:maxLength="50"
+            android:background="@drawable/rounded_blue_border_shape" />
+
+        <TextView
+            android:id="@+id/campos_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/search_fields_label_top_margin"
+            android:layout_below="@id/expresion_edittext"
+            android:textColor="@color/myBlack"
+            android:text="@string/campos_label"/>
+
+        <Spinner android:id="@+id/campos_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/search_boxes_height"
+            android:layout_marginTop="@dimen/search_fields_top_margin"
+            android:layout_below="@id/campos_label"
+            android:textColor="@color/myBlack"
+            android:gravity="center"
+            android:textAlignment="center"
+            android:entries="@array/campos_array"
+            android:background="@drawable/rounded_blue_border_clickable_shape" />
+
+        <TextView
+            android:id="@+id/expre_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/search_fields_label_top_margin"
+            android:layout_below="@id/campos_spinner"
+            android:textColor="@color/myBlack"
+            android:text="@string/expres_label"/>
+
+        <Spinner android:id="@+id/expre_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/search_boxes_height"
+            android:layout_marginTop="@dimen/search_fields_top_margin"
+            android:layout_below="@id/expre_label"
+            android:textColor="@color/myBlack"
+            android:gravity="center"
+            android:textAlignment="center"
+            android:entries="@array/expres_array"
+            android:background="@drawable/rounded_blue_border_clickable_shape" />
+
+        <Button
+            android:id="@+id/search_button"
+            android:layout_below="@id/expre_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/search_fields_label_top_margin"
+            android:text="@string/search"
+            android:textColor="@color/button_text_color" />
+
+    </RelativeLayout>
+
+</ScrollView>

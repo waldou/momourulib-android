@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include android:id="@+id/my_toolbar"
+        layout="@layout/toolbar"/>
+
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical"
+        android:fillViewport="true">
+
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="@dimen/content_padding">
+
+            <TextView
+                android:id="@+id/item_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:textSize="@dimen/results_item_name"
+                android:textColor="@color/myBlue"
+                android:text="Book title"
+                android:paddingTop="@dimen/results_item_section_padding"
+                android:paddingBottom="@dimen/results_item_section_padding"/>
+
+            <TextView
+                android:id="@+id/item_description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/item_name"
+                android:textSize="@dimen/results_item_description"
+                android:textColor="@color/myBlack"
+                android:text="Book title"
+                android:paddingTop="@dimen/results_item_section_padding"
+                android:paddingBottom="@dimen/results_item_section_padding" />
+
+            <TextView
+                android:id="@+id/item_keywords"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/item_description"
+                android:textSize="@dimen/results_item_description"
+                android:textColor="@color/myBlue2"
+                android:text="Book title"
+                android:paddingTop="@dimen/results_item_section_padding"
+                android:paddingBottom="@dimen/results_item_section_padding" />
+
+            <TextView
+                android:id="@+id/item_code_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/item_keywords"
+                android:textSize="@dimen/results_item_description"
+                android:textColor="@color/myBlack"
+                android:text="@string/code_label"
+                android:paddingTop="@dimen/results_item_section_padding"
+                android:paddingRight="@dimen/results_item_section_padding"
+                android:paddingBottom="@dimen/results_item_section_padding"/>
+
+            <TextView
+                android:id="@+id/item_code"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/item_keywords"
+                android:layout_toRightOf="@id/item_code_label"
+                android:textSize="@dimen/results_item_description"
+                android:textColor="@color/myBlack"
+                android:text="ABCD-EFGHI.JKL"
+                android:paddingTop="@dimen/results_item_section_padding"
+                android:paddingBottom="@dimen/results_item_section_padding"/>
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+</LinearLayout>
