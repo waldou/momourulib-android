@@ -28,6 +28,7 @@ public class LibraryItem implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    private String id;
     private String category;
     private String name;
     private String description;
@@ -35,6 +36,7 @@ public class LibraryItem implements Serializable {
     private String code;
 
     public LibraryItem(String category, String name, String description, String code, List<String> keywords) {
+        this.id = code.toUpperCase()+category.toUpperCase()+name.toUpperCase();
         this.category = category;
         this.name = name;
         this.description = description;
@@ -42,6 +44,12 @@ public class LibraryItem implements Serializable {
         this.keywords = keywords;
     }
 
+    public String getId() {
+        if(id == null)
+            id = code.toUpperCase()+category.toUpperCase()+name.toUpperCase();
+        return id;
+    }
+    public void setId(String id) { this.id = id; }
     public String getCategory() { return category; }
     public void setCategory(String category) { this.category = category; }
     public String getName() { return name; }

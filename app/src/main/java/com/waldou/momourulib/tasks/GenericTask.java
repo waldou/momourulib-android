@@ -28,13 +28,14 @@ import com.waldou.momourulib.screens.LibraryActivity;
  *
  *
  */
-public class GenericTask extends AsyncTask<Object, Object, Object> {
+public class GenericTask extends AsyncTask<Object, Object, Object> implements TaskConstants {
 
     protected LibraryActivity ctx;
     protected ProgressDialog progressDialog;
     protected String progressTitle;
     protected String progressMessage;
     protected boolean showProgressDialog;
+    protected Response response;
 
     public GenericTask(LibraryActivity ctx) {
         this.ctx = ctx;
@@ -88,6 +89,30 @@ public class GenericTask extends AsyncTask<Object, Object, Object> {
         super.onCancelled(result);
         if (ctx != null)
             ctx.setNetIconVisibility(View.INVISIBLE);
+    }
+
+    protected void destroy() {
+        ctx = null;
+        progressDialog = null;
+        progressTitle = null;
+        progressMessage = null;
+        response = null;
+    }
+
+    protected Response getResponse() { return response; }
+    protected void createResponse(int responseCode) {
+        response = new Response(responseCode, MessageResolver.resolve(responseCode, ctx));
+    }
+
+    static class Response {
+        private int responseCode;
+        private String responseMessage;
+        public Response(int responseCode, String responseMessage) {
+            this.responseCode = responseCode;
+            this.responseMessage = responseMessage;
+        }
+        public int getCode() { return responseCode; }
+        public String getMessage() { return responseMessage; }
     }
 
 }

@@ -17,7 +17,6 @@ package com.waldou.momourulib.tasks;
 
 import android.widget.Toast;
 
-import com.waldou.momourulib.MessageResolver;
 import com.waldou.momourulib.Globals;
 import com.waldou.momourulib.Utils;
 import com.waldou.momourulib.framework.LibraryItem;
@@ -42,9 +41,6 @@ import java.util.List;
  */
 public class PagingTask extends GenericTask {
 
-    private int responseCode;
-    private String responseMessage;
-
     public PagingTask(LibraryActivity ctx) {
         super(ctx);
     }
@@ -53,29 +49,29 @@ public class PagingTask extends GenericTask {
     protected Object doInBackground(Object... params) {
         List<LibraryItem> items = null;
         if(!Utils.isNetworkAvailable(ctx)) {
-            this.responseCode = -3;
+            createResponse(RESPONSE_CODE_NO_INTERNET);
         } else {
             try {
                 SearchArguments searchArguments = (SearchArguments) params[0];
                 items = Globals.getLibrary().more(searchArguments);
             } catch (LibraryException e) {
-                this.responseCode = e.getResponseCode();
-                this.responseMessage = e.getMessage();
+                createResponse(e.getResponseCode());
             } catch (IOException e) {
-                this.responseCode = -2;
                 if (e instanceof SocketTimeoutException)
-                    this.responseCode = -1;
+                    createResponse(RESPONSE_CODE_SERVER_OFFLINE);
+                else
+                    createResponse(RESPONSE_CODE_IO_ERROR);
             } catch (Exception e) {
-                this.responseCode = -99;
+                createResponse(RESPONSE_CODE_UNKNOWN);
             }
         }
-        if(responseCode == 0) {
-            if(items == null || items.isEmpty()) {
-                this.responseCode = 1;
+        if(getResponse() == null) {
+            if (items == null || items.isEmpty()) {
+                createResponse(RESPONSE_CODE_NO_RESULTS);
+            } else {
+                createResponse(RESPONSE_CODE_RESULTS_FOUND);
             }
         }
-        if(responseMessage == null)
-            responseMessage = MessageResolver.resolve(responseCode, ctx);
         return items;
     }
 
@@ -83,21 +79,21 @@ public class PagingTask extends GenericTask {
     protected void onPostExecute(Object result) {
         super.onPostExecute(result);
         try {
-            if (responseCode == 0) {
+            if (getResponse().getCode() == RESPONSE_CODE_RESULTS_FOUND) {
                 if(!(ctx.getCurrentFragment() instanceof ResultsFragment))
                     return; // Just omit the response
                 ResultsFragment resultsFragment = (ResultsFragment) ctx.getCurrentFragment();
                 List<LibraryItem> items = (List<LibraryItem>) result;
                 resultsFragment.addItems(items);
-                Utils.sendToast(ctx, responseMessage, Toast.LENGTH_SHORT);
+                Utils.sendToast(ctx, getResponse().getMessage(), Toast.LENGTH_SHORT);
             } else {
-                Utils.sendToast(ctx, responseMessage, Toast.LENGTH_LONG);
+                Utils.sendToast(ctx, getResponse().getMessage(), Toast.LENGTH_LONG);
             }
         } catch(Exception e) {
             // TODO
+        } finally {
+            destroy();
         }
-        responseMessage = null;
-        ctx = null;
     }
 
 }

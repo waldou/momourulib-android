@@ -46,6 +46,9 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 /**
  * @author Waldo Urribarri - www.waldou.com
  *
@@ -56,9 +59,9 @@ public class LibraryActivity extends AppCompatActivity {
 
     private FragmentActivity ctx;
 
-    private Toolbar mToolbar;
-    protected DrawerLayout mDrawerLayout;
-    private ListView mDrawerList;
+    @BindView(R.id.my_toolbar) protected Toolbar mToolbar;
+    @BindView(R.id.drawer_layout) protected DrawerLayout mDrawerLayout;
+    @BindView(R.id.left_drawer) protected ListView mDrawerList;
     private ActionBarDrawerToggle mDrawerToggle;
     protected String mTitle;
 
@@ -71,6 +74,7 @@ public class LibraryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_library);
         ctx = this;
+        ButterKnife.bind(this);
 
         fragmentScreens = new Fragment[3];
         currentFragment = new SearchFragment();
@@ -128,8 +132,6 @@ public class LibraryActivity extends AppCompatActivity {
      */
     private void setupMenu() {
 
-        mDrawerLayout = findViewById(R.id.drawer_layout);
-        mDrawerList = findViewById(R.id.left_drawer);
         View header = getLayoutInflater().inflate(R.layout.nav_header, null);
         mDrawerList.addHeaderView(header);
         final int[] menuIcons = new int[] { R.drawable.ic_search_black_24dp, R.drawable.ic_star_black_24dp};
@@ -211,7 +213,6 @@ public class LibraryActivity extends AppCompatActivity {
 
         });
 
-        mToolbar = findViewById(R.id.my_toolbar);
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         final String mDrawerTitle = getString(R.string.drawer_open);

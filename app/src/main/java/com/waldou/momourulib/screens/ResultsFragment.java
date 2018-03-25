@@ -63,7 +63,7 @@ public class ResultsFragment extends Fragment {
     private FragmentActivity ctx;
 
     protected MenuItem mSearchAction;
-    private EditText edtSeach;
+    private EditText edtSearch;
     protected boolean isSearchOpened;
 
     private int version;
@@ -71,8 +71,7 @@ public class ResultsFragment extends Fragment {
     private SearchArguments searchArguments;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         ctx = getActivity();
         View rootView = inflater.inflate(R.layout.fragment_results, container, false);
 
@@ -93,7 +92,7 @@ public class ResultsFragment extends Fragment {
                     int count = listView.getCount();
                     if (count >= searchArguments.getTo() && listView.getLastVisiblePosition() >= count - threshold) {
                         boolean doSearch = !isSearchOpened;
-                        if(!doSearch && edtSeach.getText().toString().equals("")) {
+                        if(!doSearch && edtSearch.getText().toString().equals("")) {
                             closeSearch();
                             doSearch = true;
                         }
@@ -147,7 +146,7 @@ public class ResultsFragment extends Fragment {
             //hides the keyboard
             InputMethodManager imm = (InputMethodManager) ctx.getSystemService(Context.INPUT_METHOD_SERVICE);
             if (imm != null) {
-                imm.hideSoftInputFromWindow(edtSeach.getWindowToken(), 0);
+                imm.hideSoftInputFromWindow(edtSearch.getWindowToken(), 0);
             }
         } else { //open the search entry
             if (action != null) {
@@ -155,11 +154,11 @@ public class ResultsFragment extends Fragment {
                 // custom view in the action bar.
                 action.setCustomView(R.layout.search_bar);//add the custom view
                 action.setDisplayShowTitleEnabled(false); //hide the title
-                edtSeach = action.getCustomView().findViewById(R.id.edtSearch); //the text editor
-                edtSeach.addTextChangedListener(new TextWatcher() {
+                edtSearch = action.getCustomView().findViewById(R.id.edtSearch); //the text editor
+                edtSearch.addTextChangedListener(new TextWatcher() {
                     @Override
                     public void afterTextChanged(Editable arg0) {
-                        String text = edtSeach.getText().toString().toLowerCase(Locale.getDefault());
+                        String text = edtSearch.getText().toString().toLowerCase(Locale.getDefault());
                         adapter.filter(text);
                     }
                     @Override
@@ -171,11 +170,11 @@ public class ResultsFragment extends Fragment {
                             CharSequence arg0, int arg1, int arg2, int arg3) {
                     }
                 });
-                edtSeach.requestFocus();
+                edtSearch.requestFocus();
                 //open the keyboard focused in the edtSearch
                 InputMethodManager imm = (InputMethodManager) ctx.getSystemService(Context.INPUT_METHOD_SERVICE);
                 if (imm != null) {
-                    imm.showSoftInput(edtSeach, InputMethodManager.SHOW_IMPLICIT);
+                    imm.showSoftInput(edtSearch, InputMethodManager.SHOW_IMPLICIT);
                 }
                 //add the close icon
                 Drawable wrappedIcon = DrawableCompat.wrap(getResources().getDrawable(R.drawable.ic_clear_black_24dp));

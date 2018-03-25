@@ -13,9 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *******************************************************************************/
-package com.waldou.momourulib;
+package com.waldou.momourulib.tasks;
 
 import android.content.Context;
+
+import com.waldou.momourulib.R;
 
 /**
  * @author Waldo Urribarri - www.waldou.com
@@ -24,25 +26,25 @@ import android.content.Context;
  * a response code.
  *
  */
-public class MessageResolver {
+public class MessageResolver implements TaskConstants {
 
     public static String resolve(int responseCode, Context ctx) {
         String message = null;
         try {
             switch (responseCode) {
-                case 1:
+                case RESPONSE_CODE_NO_RESULTS:
                     message = ctx.getResources().getString(R.string.error_no_results);
                     break;
-                case 0:
+                case RESPONSE_CODE_RESULTS_FOUND:
                     message = ctx.getResources().getString(R.string.results_found);
                     break;
-                case -1:
+                case RESPONSE_CODE_SERVER_OFFLINE:
                     message = ctx.getResources().getString(R.string.error_timeout);
                     break;
-                case -2:
+                case RESPONSE_CODE_IO_ERROR:
                     message = ctx.getResources().getString(R.string.error_io);
                     break;
-                case -3:
+                case RESPONSE_CODE_NO_INTERNET:
                     message = ctx.getResources().getString(R.string.error_network_unavailable);
                     break;
                 default:

@@ -20,7 +20,6 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.waldou.momourulib.MessageResolver;
 import com.waldou.momourulib.Globals;
 import com.waldou.momourulib.R;
 import com.waldou.momourulib.Utils;
@@ -45,9 +44,6 @@ import java.util.List;
  */
 public class SearchTask extends GenericTask {
 
-    private int responseCode;
-    private String responseMessage;
-
     private SearchArguments searchArguments;
 
     public SearchTask(LibraryActivity ctx) {
@@ -61,29 +57,29 @@ public class SearchTask extends GenericTask {
     protected Object doInBackground(Object... params) {
         List<LibraryItem> items = null;
         if(!Utils.isNetworkAvailable(ctx)){
-            this.responseCode = -3;
+            createResponse(RESPONSE_CODE_NO_INTERNET);
         } else {
             try {
                 searchArguments = (SearchArguments) params[0];
                 items = Globals.getLibrary().search(searchArguments);
             } catch (LibraryException e) {
-                this.responseCode = e.getResponseCode();
-                this.responseMessage = e.getMessage();
+                createResponse(e.getResponseCode());
             } catch (IOException e) {
-                this.responseCode = -2;
                 if (e instanceof SocketTimeoutException)
-                    this.responseCode = -1;
+                    createResponse(RESPONSE_CODE_SERVER_OFFLINE);
+                else
+                    createResponse(RESPONSE_CODE_IO_ERROR);
             } catch (Exception e) {
-                this.responseCode = -99;
+                createResponse(RESPONSE_CODE_UNKNOWN);
             }
         }
-        if(responseCode == 0) {
-            if(items == null || items.isEmpty()) {
-                this.responseCode = 1;
+        if(getResponse() == null) {
+            if (items == null || items.isEmpty()) {
+                createResponse(RESPONSE_CODE_NO_RESULTS);
+            } else {
+                createResponse(RESPONSE_CODE_RESULTS_FOUND);
             }
         }
-        if(responseMessage == null)
-            responseMessage = MessageResolver.resolve(responseCode, ctx);
         return items;
     }
 
@@ -91,7 +87,7 @@ public class SearchTask extends GenericTask {
     protected void onPostExecute(Object result) {
         super.onPostExecute(result);
         try {
-            if (responseCode == 0) {
+            if (getResponse().getCode() == RESPONSE_CODE_RESULTS_FOUND) {
                 // Get items
                 List<LibraryItem> items = (List<LibraryItem>) result;
 
@@ -116,14 +112,19 @@ public class SearchTask extends GenericTask {
                         .commit();
                 ctx.setDefaultToolbarTitle(ctx.getResources().getString(R.string.results_title));
             } else {
-                Utils.sendToast(ctx, responseMessage, Toast.LENGTH_LONG);
+                Utils.sendToast(ctx, getResponse().getMessage(), Toast.LENGTH_LONG);
             }
         } catch(Exception e) {
             // TODO
+        } finally {
+            destroy();
         }
-        responseMessage = null;
+    }
+
+    @Override
+    protected void destroy() {
         searchArguments = null;
-        ctx = null;
+        super.destroy();
     }
 
 }

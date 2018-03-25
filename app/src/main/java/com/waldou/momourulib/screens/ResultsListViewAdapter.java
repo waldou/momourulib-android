@@ -34,6 +34,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 /**
  * @author Waldo Urribarri - www.waldou.com
  *
@@ -57,12 +60,15 @@ public class ResultsListViewAdapter extends BaseAdapter {
 		this.favoritesManager = favoritesManager;
 	}
 
-	public class ViewHolder {
-		CardView cardView;
+	static class ViewHolder {
+		@BindView(R.id.result_card_view) CardView cardView;
+		@BindView(R.id.item_name) TextView name;
+		@BindView(R.id.item_code) TextView code;
+		@BindView(R.id.item_favorite_icon) ImageView favoriteIcon;
 		Boolean isFavorite;
-		TextView name;
-		TextView code;
-		ImageView favoriteIcon;
+		public ViewHolder(View view) {
+			ButterKnife.bind(this, view);
+		}
 	}
 
 	@Override
@@ -83,12 +89,8 @@ public class ResultsListViewAdapter extends BaseAdapter {
 	public View getView(final int position, View view, ViewGroup parent) {
 		final ViewHolder holder;
 		if (view == null) {
-			holder = new ViewHolder();
 			view = inflater.inflate(R.layout.result_list_view_item, null);
-			holder.cardView = view.findViewById(R.id.result_card_view);
-			holder.name = view.findViewById(R.id.item_name);
-			holder.code = view.findViewById(R.id.item_code);
-			holder.favoriteIcon = view.findViewById(R.id.item_favorite_icon);
+			holder = new ViewHolder(view);
 			view.setTag(holder);
 		} else {
 			holder = (ViewHolder) view.getTag();
@@ -108,7 +110,7 @@ public class ResultsListViewAdapter extends BaseAdapter {
 		// Set the results into the Views
 		holder.name.setText(item.getName());
 		holder.code.setText(item.getCode());
-		holder.isFavorite = (favoritesManager.get(item.getCode()) != null) ? true : false;
+		holder.isFavorite = (favoritesManager.get(item.getId()) != null) ? true : false;
 		// Change icon if its a favorite
 		if(holder.isFavorite) {
 			Drawable wrappedIcon =
